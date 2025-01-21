@@ -12,7 +12,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
+  useReactTable
 } from '@tanstack/react-table'
 
 import { Button } from '@/components/ui/button'
@@ -22,7 +22,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import {
   Table,
@@ -30,7 +30,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { Todo } from '../types'
@@ -47,7 +47,7 @@ export function TodoDataTable({ data }: TodoDataTable) {
 
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
+    []
   )
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
@@ -59,7 +59,7 @@ export function TodoDataTable({ data }: TodoDataTable) {
 
     toast({
       title: 'Deletion Successful',
-      description: 'The todo item has been successfully deleted.',
+      description: 'The todo item has been successfully deleted.'
     })
   }
 
@@ -71,7 +71,7 @@ export function TodoDataTable({ data }: TodoDataTable) {
 
     toast({
       title: 'Update Successful',
-      description: 'The todo item has been successfully updated.',
+      description: 'The todo item has been successfully updated.'
     })
   }
 
@@ -87,8 +87,19 @@ export function TodoDataTable({ data }: TodoDataTable) {
           ? 'outline'
           : 'secondary'
 
-        return <Badge variant={variant}>{status}</Badge>
-      },
+        return (
+          <Badge
+            variant={variant}
+            className={`${
+              doneAt
+                ? 'bg-green-400 text-black'
+                : 'bg-blue-400 text-black'
+            }`}
+          >
+            {status}
+          </Badge>
+        )
+      }
     },
     {
       accessorKey: 'title',
@@ -103,7 +114,7 @@ export function TodoDataTable({ data }: TodoDataTable) {
           </Button>
         )
       },
-      cell: ({ row }) => <div>{row.getValue('title')}</div>,
+      cell: ({ row }) => <div>{row.getValue('title')}</div>
     },
     {
       accessorKey: 'createdAt',
@@ -114,7 +125,7 @@ export function TodoDataTable({ data }: TodoDataTable) {
             {row.original.createdAt.toLocaleDateString()}
           </div>
         )
-      },
+      }
     },
     {
       id: 'actions',
@@ -147,8 +158,8 @@ export function TodoDataTable({ data }: TodoDataTable) {
             </DropdownMenuContent>
           </DropdownMenu>
         )
-      },
-    },
+      }
+    }
   ]
 
   const table = useReactTable({
@@ -166,8 +177,8 @@ export function TodoDataTable({ data }: TodoDataTable) {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection,
-    },
+      rowSelection
+    }
   })
 
   return (
@@ -175,16 +186,16 @@ export function TodoDataTable({ data }: TodoDataTable) {
       <div className="rounded-md border">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
+                {headerGroup.headers.map(header => {
                   return (
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                     </TableHead>
                   )
@@ -194,16 +205,16 @@ export function TodoDataTable({ data }: TodoDataTable) {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map(row => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                 >
-                  {row.getVisibleCells().map((cell) => (
+                  {row.getVisibleCells().map(cell => (
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </TableCell>
                   ))}
