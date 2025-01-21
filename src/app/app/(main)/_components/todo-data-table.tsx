@@ -37,6 +37,8 @@ import { Todo } from '../types'
 import { useRouter } from 'next/navigation'
 import { deleteTodo, upsertTodo } from '../actions'
 import { toast } from '@/components/ui/use-toast'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Input } from "@/components/ui/input"
 
 type TodoDataTable = {
   data: Todo[]
@@ -91,9 +93,7 @@ export function TodoDataTable({ data }: TodoDataTable) {
           <Badge
             variant={variant}
             className={`${
-              doneAt
-                ? 'bg-green-400 text-black'
-                : 'bg-blue-400 text-black'
+              doneAt ? 'bg-green-400 text-black' : 'bg-blue-400 text-black'
             }`}
           >
             {status}
@@ -183,55 +183,67 @@ export function TodoDataTable({ data }: TodoDataTable) {
 
   return (
     <div className="w-full">
+      <div className="flex items-center py-4">
+      <Input
+        placeholder="Filter titles..."
+        value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+        onChange={(event) =>
+          table.getColumn("title")?.setFilterValue(event.target.value)
+        }
+        className="max-w-sm"
+      />
+    </div>
       <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map(headerGroup => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  )
-                })}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map(row => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                >
-                  {row.getVisibleCells().map(cell => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
+        <ScrollArea className="h-[400px]">
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map(headerGroup => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map(header => {
+                    return (
+                      <TableHead key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                      </TableHead>
+                    )
+                  })}
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map(row => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && 'selected'}
+                  >
+                    {row.getVisibleCells().map(cell => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </ScrollArea>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
