@@ -3,7 +3,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
+  BreadcrumbPage
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
@@ -13,13 +13,14 @@ import { Button } from '@/components/ui/button'
 import { TodoUpsertSheet } from './_components/todo-upsert-sheet'
 import { PlusIcon } from 'lucide-react'
 import { Notifications } from '@/components/ui/notification'
+import { FeedbackForm } from '@/components/ui/feedback-form'
 
 export default async function Page() {
   const todos = await getUserTodos()
 
   return (
     <div className="relative flex h-full w-full flex-col">
-      <header className="flex h-16 shrink-0 items-center gap-2 z-10">
+      <header className="flex h-16 shrink-0 items-center gap-2 z-10 border-b">
         <div className="flex w-full items-center justify-between px-4">
           <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
@@ -35,7 +36,7 @@ export default async function Page() {
             </Breadcrumb>
           </div>
           <div className="flex items-center gap-2">
-         
+            <FeedbackForm />
             <Notifications />
           </div>
         </div>
