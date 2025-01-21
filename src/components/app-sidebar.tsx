@@ -1,24 +1,12 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import {
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
-import { routes } from "@/lib/routes"
+import * as React from 'react'
+import { Command } from 'lucide-react'
+import { routes } from '@/lib/routes'
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import { NavMain } from '@/components/nav-main'
+import { NavSecondary } from '@/components/nav-secondary'
+import { NavUser } from '@/components/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -26,15 +14,15 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
+  SidebarMenuItem
+} from '@/components/ui/sidebar'
 
 const data = {
   user: {
-    name: "Julius Caezar",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
+    name: 'Julius Caezar',
+    email: 'm@example.com',
+    avatar: '/avatars/shadcn.jpg'
+  }
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -50,7 +38,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Help Mind</span>
-                  {/* <span className="truncate text-xs">Enterprise</span> */}
+                  <span className="truncate text-xs">Enterprise</span>
                 </div>
               </div>
             </SidebarMenuButton>
