@@ -49,6 +49,12 @@
     --sidebar-border: 220 13% 91%;
  
     --sidebar-ring: 217.2 91.2% 59.8%;
+ 
+    --offset: 10px;
+ 
+    --slide-up-fade: slide-up-fade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+ 
+    --fade-in: fade-in 0.2s ease-in-out forwards;
   }
  
   .dark {
@@ -87,6 +93,9 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --offset: 10px;
+    --slide-up-fade: slide-up-fade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --fade-in: fade-in 0.2s ease-in-out forwards;
   }
 }
  
