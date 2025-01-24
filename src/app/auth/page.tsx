@@ -1,6 +1,5 @@
-import { AuthForm } from "./_components/auth-form";
-import Image from "next/image";
-import { LoginForm } from "./_components/auth-google";
+import { AuthForm } from './_components/auth-form'
+import Image from 'next/image'
 
 export default function Page() {
   return (
@@ -16,10 +15,9 @@ export default function Page() {
           />
         </div>
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-          {/* <AuthForm /> */}
-          <LoginForm />
+          <AuthForm />
         </div>
       </div>
     </main>
-  );
+  )
 }
