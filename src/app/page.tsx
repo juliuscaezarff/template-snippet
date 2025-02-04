@@ -1,3 +1,5 @@
+import Component from "@/components/ui/hero";
+
 export default function Home() {
-  return <main>Landing Page</main>
+  return <Component />
 }
