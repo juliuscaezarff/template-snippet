@@ -1,5 +1,7 @@
 import { SquareTerminal, Settings2, LifeBuoy, Send } from "lucide-react"
 import { type LucideIcon } from "lucide-react"
+import { SettingsGearIcon } from "@/components/ui/settings-gear"
+import { type FC } from 'react'
 
 // Tipo base para itens de navegação
 type BaseRoute = {
@@ -8,9 +10,11 @@ type BaseRoute = {
   isActive?: boolean
 }
 
+type IconType = LucideIcon | FC<any>
+
 // Tipo para rotas principais que requerem ícone
 type MainRoute = BaseRoute & {
-  icon: LucideIcon
+  icon: IconType
   items?: Omit<BaseRoute, 'icon' | 'items'>[]
 }
 
@@ -39,7 +43,7 @@ export const routes: Routes = {
     {
       title: "Settings",
       url: "/app/settings",
-      icon: Settings2,
+      icon: SettingsGearIcon,
       items: [
         {
           title: "Meu perfil",
