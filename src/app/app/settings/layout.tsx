@@ -26,11 +26,11 @@ export default async function Layout({ children }: PropsWithChildren) {
         </div>
       </header>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-        <div className="container max-w-screen-lg">
-          <div className="grid grid-cols-[10rem_1fr] gap-12">
-            <SettingsSidebar />
-            <div>{children}</div>
+        <div className="flex flex-col gap-8 container mx-auto max-w-3xl">
+          <div className="border-b mt-10 pb-6">
+            <SettingsSidebar className="overflow-x-auto" />
           </div>
+          <div>{children}</div>
         </div>
       </div>
     </>
