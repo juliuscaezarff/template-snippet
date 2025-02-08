@@ -1,5 +1,5 @@
 import {
-  BellIcon,
+  
   ExclamationTriangleIcon,
   GearIcon,
 } from '@radix-ui/react-icons'
@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Merge, Rocket, Split } from 'lucide-react'
 import { Tabs, TabsList, TabsTrigger } from './tabs'
 import { Separator } from './separator'
+import { BellIcon } from './bell'
 
 export async function Notifications() {
   return (
@@ -16,10 +17,10 @@ export async function Notifications() {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="relative h-6 gap-1 rounded-full px-2 text-secondary-foreground"
+          className="relative h-7 gap-1 rounded-full px-2 text-secondary-foreground"
           size="sm"
         >
-          <BellIcon className="h-3 w-3" />
+          <BellIcon />
           <span>12</span>
 
           <span className="absolute -right-0.5 -top-0.5 flex h-2 w-2">
