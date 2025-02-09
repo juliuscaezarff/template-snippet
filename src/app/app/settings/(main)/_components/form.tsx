@@ -26,6 +26,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 
 type ProfileFormProps = {
   defaultValues: Session['user']
@@ -55,9 +57,9 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={onSubmit} className="space-y-8">
-        <Card>
+      <Card>
           <CardHeader>
-            <CardTitle>Nome</CardTitle>
+            <CardTitle className="text-base font-semibold">Nome</CardTitle>
             <CardDescription>
               Este será o nome exibido publicamente.
             </CardDescription>
@@ -77,11 +79,25 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
               )}
             />
           </CardContent>
+          <Separator className="mb-6" />
+
+          <CardContent>
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-muted-foreground">
+                Máximo de 20 caracteres
+              </p>
+              <Button disabled={form.formState.isLoading} type="submit" size='sm'>
+                {form.formState.isSubmitting
+                  ? 'Salvando...'
+                  : 'Salvar alterações'}
+              </Button>
+            </div>
+          </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Email</CardTitle>
+            <CardTitle className="text-base font-semibold">Email</CardTitle>
             <CardDescription>
               Entre em contato pelo email contact@micro-saas.com para alterar o
               email.
@@ -104,12 +120,64 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
           </CardContent>
         </Card>
 
-        <SheetFooter className="mt-auto">
+        <Card className="border border-red-500">
+          <CardHeader className="space-y-1">
+            <div className="flex items-center gap-2">
+              <CardTitle className="text-base font-semibold">
+                Deletar Conta
+              </CardTitle>
+            </div>
+            <CardDescription>
+              Permanentemente delete sua conta e todos os dados associados. Esta
+              ação não pode ser desfeita - por favor, proceda com cautela.
+            </CardDescription>
+          </CardHeader>
+          <Separator className="mb-4" />
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex justify-end">
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      className="bg-red-500 hover:bg-red-600 transition-colors w-full sm:w-auto"
+                    >
+                      Deletar Conta
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Tem certeza que deseja deletar sua conta?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Esta ação é irreversível. Todos os seus dados serão
+                        permanentemente removidos dos nossos servidores.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                      <AlertDialogAction
+                        // onClick={handleDeleteAccount}
+                        className="bg-red-500 text-white hover:bg-red-600 transition-colors"
+                      >
+                        Sim, deletar minha conta
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* <SheetFooter className="mt-auto">
           <Button disabled={form.formState.isLoading} type="submit" size='sm'>
             {form.formState.isSubmitting && 'Salvando...'}
             {!form.formState.isSubmitting && 'Salvar alterações'}
           </Button>
-        </SheetFooter>
+        </SheetFooter> */}
       </form>
     </Form>
   )

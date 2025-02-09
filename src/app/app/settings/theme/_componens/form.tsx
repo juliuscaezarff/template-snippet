@@ -49,7 +49,7 @@ export function ThemeForm() {
       <form onSubmit={onSubmit} className="space-y-8">
         <Card>
           <CardHeader>
-            <CardTitle>Tema</CardTitle>
+            <CardTitle className="text-base font-semibold">Tema</CardTitle>
             <CardDescription>Selecione o tema para o painel.</CardDescription>
           </CardHeader>
           <CardContent>
