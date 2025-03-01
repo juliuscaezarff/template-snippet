@@ -149,8 +149,8 @@ export default function Component() {
         </div>
       </header>
       <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-        <h1 className="text-6xl font-bold mb-8 max-w-4xl mx-auto">A unified API for on-chain transactions</h1>
-        <h2 className="text-xl mb-10">Route transactions from your dapp between L2 chains in real time</h2>
+        <h1 className="text-6xl font-bold mb-8 max-w-4xl mx-auto">Initial</h1>
+        <h2 className="text-base mb-10">O primeiro passo para começar a construir</h2>
         <Button size='default'>
           Join waitlist
         </Button>
