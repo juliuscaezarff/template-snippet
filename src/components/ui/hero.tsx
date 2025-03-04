@@ -152,7 +152,7 @@ export default function Component() {
         <h1 className="text-6xl font-bold mb-8 max-w-4xl mx-auto">Initial</h1>
         <h2 className="text-base mb-10">O primeiro passo para começar a construir</h2>
         <Button size='default'>
-          Join waitlist
+          Começar
         </Button>
       </div>
       <Canvas shadows camera={{ position: [30, 30, 30], fov: 50 }} className="absolute inset-0">
